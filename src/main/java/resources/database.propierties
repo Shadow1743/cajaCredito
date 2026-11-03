@@ -1,0 +1,3 @@
+db.url=jdbc:mysql://localhost:3306/cooperativa_db?useSSL=false&serverTimezone=America/El_Salvador&allowPublicKeyRetrieval=true
+db.user=root
+db.password=
