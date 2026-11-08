@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CreditoService {
  // Determinar la tasa de interés anual escalonanda según el montom solicitado.
- public BidDecimal obtenerTasaEscalonada(BigDecimal motoSolicitado) {
+ public BigDecimal obtenerTasaEscalonada(BigDecimal motoSolicitado) {
      if (motoSolicitado.compareTo(new BigDecimal("3000.00")) <= 0)
          return AppConstanst.TASA_MICROCREDITO; // 18%
      } else if (montoSolicitado.compareTo(new BigDecimal(10000.00)) <=0) {

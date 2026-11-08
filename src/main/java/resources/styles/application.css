@@ -1,0 +1,50 @@
+.root {
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-background-color: #F4F6F9;
+}
+
+.sidebar {
+    -fx-background-color: #6D1519;
+    -fx-padding: 20px 12px;
+}
+
+.sidebar-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F3E8E8;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #8E1D22;
+    -fx-text-fill: #FFFFFF;
+}
+
+.primary-button {
+    -fx-background-color: #6D1519;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 18px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #520F12;
+}
+
+.card-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
+    -fx-padding: 20px;
+}

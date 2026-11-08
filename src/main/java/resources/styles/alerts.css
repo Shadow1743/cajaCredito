@@ -1,0 +1,30 @@
+/* Campos con error de validación */
+.input-error {
+    -fx-border-color: #DC2626 !important;
+    -fx-background-color: #FEF2F2 !important;
+}
+
+/* Campos validados o aprobados */
+.input-approved {
+    -fx-border-color: #14B866 !important;
+    -fx-background-color: #ECFDF5 !important;
+}
+
+/* Badges de estado en tablas (Página 4 del PDF) */
+.badge-activo {
+    -fx-background-color: #D1FAE5;
+    -fx-text-fill: #065F46;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+}
+
+.badge-revision {
+    -fx-background-color: #FEF3C7;
+    -fx-text-fill: #92400E;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+}

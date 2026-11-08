@@ -1,90 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+package com.cooperativa.service;
 
-    <groupId>com.cooperativa</groupId>
-    <artifactId>cooperativa-sistema</artifactId>
-    <version>1.0.0</version>
-<name>Sistema Integral de Caja de Crédito y Cooperativa</name>
+import com.cooperativa.util.FormatterUtil;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>21.0.2</javafx.version>
-        <mysql.version>8.3.0</mysql.version>
-        <junit.version>5.10.2</junit.version>
-    </properties>
+import java.io.FileOutputStream;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-    <dependencies>
-        <!-- JavaFX Controls & FXML -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-<version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-<version>${javafx.version}</version>
-        </dependency>
+public class PDFExportService {
 
-        <!-- MySQL JDBC Driver -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-<version>${mysql.version}</version>
-        </dependency>
+    public void exportarReporteCierreContable(
+            String rutaArchivo,
+            LocalDate fechaInicio,
+            LocalDate fechaCierre,
+            BigDecimal carteraColocada,
+            BigDecimal recaudadoCobros,
+            BigDecimal disponibleCaja,
+            String estadoEjercicio,
+            String notasAuditoria) throws Exception {
 
-        <!-- Encriptación BCrypt para PasswordHasher -->
-        <dependency>
-            <groupId>org.mindrot</groupId>
-            <artifactId>jbcrypt</artifactId>
-            <version>0.4</version>
-        </dependency>
+        Document document = new Document(PageSize.LETTER);
+        PdfWriter.getInstance(document, new FileOutputStream(rutaArchivo));
+        document.open();
 
-        <!-- OpenPDF para PDFExportService -->
-        <dependency>
-            <groupId>com.github.librepdf</groupId>
-            <artifactId>openpdf</artifactId>
-            <version>1.3.39</version>
-        </dependency>
+        Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+        Font subFont = FontFactory.getFont(FontFactory.HELVETICA, 11);
 
-        <!-- JUnit 5 para Pruebas Unitarias -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-<version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-<version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+        Paragraph titulo = new Paragraph("CAJA DE CRÉDITO - RESUMEN Y CIERRE CONTABLE", tituloFont);
+        titulo.setAlignment(Element.ALIGN_CENTER);
+        document.add(titulo);
+        document.add(new Paragraph("Periodo: " + fechaInicio + " al " + fechaCierre, subFont));
+        document.add(Chunk.NEWLINE);
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.12.1</version>
-                <configuration>
-                    <release>17</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>com.cooperativa.MainApp</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+        PdfPTable tabla = new PdfPTable(2);
+        tabla.setWidthPercentage(100);
+        tabla.addCell("Total Cartera Colocada ($):");
+        tabla.addCell(FormatterUtil.formatUSD(carteraColocada));
+        tabla.addCell("Total Recaudado en Cobros ($):");
+        tabla.addCell(FormatterUtil.formatUSD(recaudadoCobros));
+        tabla.addCell("Disponible en Caja / Bancos ($):");
+        tabla.addCell(FormatterUtil.formatUSD(disponibleCaja));
+        tabla.addCell("Estado del Ejercicio:");
+        tabla.addCell(estadoEjercicio);
+
+        document.add(tabla);
+        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Notas de Auditoría o Cierre de Caja:", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+        document.add(new Paragraph(notasAuditoria != null && !notasAuditoria.isBlank() ? notasAuditoria : "Sin novedades registradas.", subFont));
+
+        document.close();
+    }
+}

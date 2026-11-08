@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" style="-fx-padding: 30px;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.ContabilidadController">
+    <VBox spacing="18.0" styleClass="card-pane">
+        <VBox spacing="4.0">
+            <Label styleClass="module-title" text="Resumen y Cierre Contable" />
+            <Label styleClass="module-subtitle" text="Control general de ingresos, egresos, cartera de créditos y balance diario" />
+        </VBox>
+
+        <GridPane hgap="22.0" vgap="16.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Fecha de Inicio:" />
+                <DatePicker fx:id="dpFechaInicio" maxWidth="Infinity" onAction="#actualizarMetricasContables" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Fecha de Cierre:" />
+                <DatePicker fx:id="dpFechaCierre" maxWidth="Infinity" onAction="#actualizarMetricasContables" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Total Cartera Colocada ($):" />
+                <TextField fx:id="txtTotalCartera" editable="false" promptText="Ej. $45,000.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Total Recaudado en Cobros ($):" />
+                <TextField fx:id="txtTotalRecaudado" editable="false" promptText="Ej. $12,450.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Disponible en Caja / Bancos ($):" />
+                <TextField fx:id="txtDisponibleCaja" editable="false" promptText="Ej. $32,550.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Estado del Ejercicio:" />
+                <TextField fx:id="txtEstadoEjercicio" editable="false" text="Cuadrado / Activo" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Label styleClass="field-label" text="Notas de Auditoría o Cierre de Caja:" />
+                <TextField fx:id="txtNotasAuditoria" promptText="Ej. Cierre de operaciones del mes sin novedad ni diferencias en efectivo." />
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER">
+            <Button onAction="#generarReporteContable" styleClass="primary-button" text="Generar Reporte Contable" />
+        </HBox>
+    </VBox>
+</VBox>

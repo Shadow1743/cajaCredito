@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" style="-fx-padding: 30px;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.DictamenComiteController">
+    <VBox spacing="16.0" styleClass="card-pane" VBox.vgrow="ALWAYS">
+        <VBox spacing="4.0">
+            <Label styleClass="module-title" text="Dictamen de Comité y Autorización de Desembolso" />
+            <Label styleClass="module-subtitle" text="Evaluación gerencial de solicitudes pendientes, garantías y contabilización de desembolsos" />
+        </VBox>
+
+        <TableView fx:id="tablaSolicitudes" prefHeight="320.0" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colCodigo" prefWidth="120.0" text="Código Crédito" />
+                <TableColumn fx:id="colSocio" prefWidth="220.0" text="Nombre del Socio" />
+                <TableColumn fx:id="colDui" prefWidth="120.0" text="DUI" />
+                <TableColumn fx:id="colMonto" prefWidth="130.0" text="Monto ($)" />
+                <TableColumn fx:id="colPlazo" prefWidth="90.0" text="Plazo (Meses)" />
+                <TableColumn fx:id="colTasa" prefWidth="90.0" text="Tasa (%)" />
+                <TableColumn fx:id="colDestino" prefWidth="200.0" text="Destino del Crédito" />
+                <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado" />
+            </columns>
+        </TableView>
+
+        <VBox spacing="6.0">
+            <Label styleClass="field-label" text="Resolución / Observación de Gerencia para Bitácora de Auditoría:" />
+            <TextField fx:id="txtObservacionDictamen" promptText="Ej. Cumple RCI <= 40%, garantía verificada y récord Equifax favorable." />
+        </VBox>
+
+        <HBox alignment="CENTER_RIGHT" spacing="14.0">
+            <Button onAction="#rechazarSolicitud" style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 22; -fx-background-radius: 6; -fx-cursor: hand;" text="Rechazar Solicitud" />
+            <Button onAction="#aprobarYDesembolsar" styleClass="primary-button" text="Aprobar y Desembolsar Crédito" />
+        </HBox>
+    </VBox>
+</VBox>

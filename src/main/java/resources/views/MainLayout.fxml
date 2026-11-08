@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="740.0" prefWidth="1220.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.MainLayoutController">
+
+    <!-- Barra Lateral Izquierda Verde Oscuro -->
+    <left>
+        <VBox prefWidth="250.0" spacing="10.0" styleClass="sidebar">
+            <VBox spacing="4.0" style="-fx-padding: 0 0 20 0;">
+                <Label styleClass="sidebar-brand" text="CAJA DE CRÉDITO" />
+                <Label fx:id="lblUsuarioActivo" styleClass="sidebar-subtitle" text="Usuario Activo" />
+                <Label fx:id="lblRolActivo" style="-fx-text-fill: #6EE7B7; -fx-font-size: 11px; -fx-font-weight: bold;" text="ROLE" />
+            </VBox>
+
+            <Separator style="-fx-opacity: 0.2;" />
+
+            <Button fx:id="btnUsuarios" maxWidth="Infinity" onAction="#abrirModuloUsuarios" styleClass="nav-button" text="👤  Registro de Usuarios" />
+            <Button fx:id="btnSocios" maxWidth="Infinity" onAction="#abrirModuloSocios" styleClass="nav-button" text="👥  Gestión de Socios" />
+            <Button fx:id="btnSimulador" maxWidth="Infinity" onAction="#abrirSimuladorCredito" styleClass="nav-button" text="📝  Solicitud de Crédito" />
+            <Button fx:id="btnDictamen" maxWidth="Infinity" onAction="#abrirDictamenComite" styleClass="nav-button" text="⚖️  Dictamen y Desembolso" />
+            <Button fx:id="btnCaja" maxWidth="Infinity" onAction="#abrirVentanillaCaja" styleClass="nav-button" text="💵  Gestión de Cobros" />
+            <Button fx:id="btnContabilidad" maxWidth="Infinity" onAction="#abrirContabilidad" styleClass="nav-button" text="📊  Módulo Contable" />
+            <Button fx:id="btnAuditoria" maxWidth="Infinity" onAction="#abrirAuditoria" styleClass="nav-button" text="🔍  Bitácora de Auditoría" />
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Label style="-fx-text-fill: #A7F3D0; -fx-font-size: 11px;" text="¿Necesitas ayuda técnica?&#10;Soporte interno: 2600-0000" />
+            <Button maxWidth="Infinity" onAction="#cerrarSesion" style="-fx-background-color: #145334; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Cerrar Sesión" />
+        </VBox>
+    </left>
+
+    <!-- Área Central Dinámica -->
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+            <StackPane fx:id="contentArea" style="-fx-background-color: #F4F6F8;" />
+        </ScrollPane>
+    </center>
+</BorderPane>
