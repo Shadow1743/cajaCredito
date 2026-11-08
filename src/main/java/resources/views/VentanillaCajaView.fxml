@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" style="-fx-padding: 30px;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.VentanillaCajaController">
+    <VBox spacing="18.0" styleClass="card-pane">
+        <VBox spacing="4.0">
+            <Label styleClass="module-title" text="Registro y Cobro de Cuotas" />
+            <Label styleClass="module-subtitle" text="Aplicación de pagos, abonos a capital y control de cuotas vencidas del socio" />
+        </VBox>
+
+        <GridPane hgap="22.0" vgap="16.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Buscar Socio o N° de Crédito:" />
+                <TextField fx:id="txtBuscarCredito" onAction="#cargarCuotaPendiente" promptText="Ej. 02458963-1 o CRED-045" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Cuota Correspondiente:" />
+                <TextField fx:id="txtCuotaCorrespondiente" editable="false" promptText="Ej. Cuota 05 de 24" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Monto de la Cuota ($):" />
+                <TextField fx:id="txtMontoCuota" promptText="Ej. 125.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Mora / Recargo por Atraso ($):" />
+                <TextField fx:id="txtMontoMora" promptText="Ej. 0.00 (Solvente)" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Total a Pagar ($):" />
+                <TextField fx:id="txtTotalPagar" promptText="Ej. 125.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Forma de Pago:" />
+                <ComboBox fx:id="cmbFormaPago" maxWidth="Infinity" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Label styleClass="field-label" text="Observaciones o comprobantes:" />
+                <TextField fx:id="txtObservaciones" promptText="Ej. Pago recibido en ventanilla principal en efectivo." />
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER">
+            <Button onAction="#procesarPagoVentanilla" styleClass="primary-button" text="Procesar Pago" />
+        </HBox>
+    </VBox>
+</VBox>

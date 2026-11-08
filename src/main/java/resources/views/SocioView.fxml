@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" style="-fx-padding: 25px;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.SocioController">
+
+    <!-- Tarjeta Superior: Formulario de Gestión de Socios (Página 3 del PDF) -->
+    <VBox spacing="16.0" styleClass="card-pane">
+        <VBox spacing="4.0">
+            <Label styleClass="module-title" text="Gestión de Socios" />
+            <Label styleClass="module-subtitle" text="Registro y expediente de clientes de la caja de crédito" />
+        </VBox>
+
+        <GridPane hgap="20.0" vgap="14.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Nombres del Socio:" />
+                <TextField fx:id="txtNombres" promptText="Ej. María Elena" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="field-label" text="Apellidos del Socio:" />
+                <TextField fx:id="txtApellidos" promptText="Ej. Rivas Gómez" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Número de DUI:" />
+                <TextField fx:id="txtDui" promptText="Ej. 02458963-1" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label styleClass="field-label" text="Ingreso Mensual Neto ($):" />
+                <TextField fx:id="txtIngresoNeto" promptText="Ej. 850.00" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Teléfono de Contacto:" />
+                <TextField fx:id="txtTelefono" promptText="Ej. 7894-1234" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label styleClass="field-label" text="Ocupación / Profesión:" />
+                <TextField fx:id="txtOcupacion" promptText="Ej. Comerciante / Agricultor" />
+            </VBox>
+
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Label styleClass="field-label" text="Dirección de Residencia:" />
+                <TextField fx:id="txtDireccion" promptText="Ej. Barrio El Centro, San Miguel" />
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER">
+            <Button onAction="#guardarSocio" styleClass="primary-button" text="Guardar Socio" />
+        </HBox>
+    </VBox>
+
+    <!-- Tarjeta Inferior: Listado General de Socios (Página 4 del PDF) -->
+    <VBox spacing="14.0" styleClass="card-pane" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label styleClass="module-title" text="Listado General de Socios" />
+                <Label styleClass="module-subtitle" text="Directorio y consulta de clientes registrados en la institución" />
+            </VBox>
+            <TextField fx:id="txtBuscarSocio" onKeyReleased="#filtrarSocios" prefWidth="280.0" promptText="🔍 Buscar por Nombre o DUI..." />
+        </HBox>
+
+        <TableView fx:id="tablaSocios" prefHeight="240.0" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="80.0" text="N° / ID" />
+                <TableColumn fx:id="colNombreCompleto" prefWidth="240.0" text="Nombre Completo del Socio" />
+                <TableColumn fx:id="colDui" prefWidth="140.0" text="Número de DUI" />
+                <TableColumn fx:id="colTelefono" prefWidth="130.0" text="Teléfono" />
+                <TableColumn fx:id="colIngreso" prefWidth="140.0" text="Ingreso Neto ($)" />
+                <TableColumn fx:id="colEstado" prefWidth="110.0" text="Estado" />
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

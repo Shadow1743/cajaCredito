@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox prefHeight="600.0" prefWidth="950.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cooperativa.controller.LoginController">
+    <!-- Panel Izquierdo Institucional Verde Oscuro -->
+    <VBox alignment="CENTER_LEFT" prefWidth="360.0" spacing="14.0" styleClass="sidebar">
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="SISTEMA DE CRÉDITO" />
+        <Label style="-fx-text-fill: #D1FAE5; -fx-font-size: 13px;" text="Gestione sus créditos y contabilidad de forma rápida y segura." wrapText="true" />
+    </VBox>
+
+    <!-- Panel Derecho Formulario de Acceso -->
+    <StackPane HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER_LEFT" maxHeight="460.0" maxWidth="420.0" spacing="16.0" styleClass="card-pane">
+            <Label styleClass="module-title" text="Ingresa tus credenciales" />
+            <Label styleClass="module-subtitle" text="para acceder al sistema institucional" />
+
+            <VBox spacing="6.0">
+                <Label styleClass="field-label" text="Usuario o DUI:" />
+                <TextField fx:id="txtUsuario" promptText="Ej. 01234567-8" />
+            </VBox>
+
+            <VBox spacing="6.0">
+                <Label styleClass="field-label" text="Contraseña:" />
+                <PasswordField fx:id="txtPassword" promptText="••••••••" />
+            </VBox>
+
+            <Button maxWidth="Infinity" onAction="#iniciarSesion" styleClass="primary-button" text="Iniciar Sesión" />
+
+            <Separator />
+
+            <VBox alignment="CENTER" spacing="8.0">
+                <Label styleClass="module-subtitle" text="¿Aún no tienes un usuario asignado? Solicita el alta con el administrador." wrapText="true" />
+                <Button onAction="#irARegistroUsuario" style="-fx-background-color: #E2E8F0; -fx-text-fill: #0B3B24; -fx-font-weight: bold;" text="Registrar Usuario" />
+            </VBox>
+        </VBox>
+    </StackPane>
+</HBox>
